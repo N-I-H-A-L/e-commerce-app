@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import { mobile } from '../responsive';
 
 import PhoneIcon from '@mui/icons-material/Phone';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -73,6 +74,7 @@ export default Footer
 const Container = styled.div`
   display: flex;
   padding-bottom: 20px;
+  ${mobile({ flexDirection: "column" })};
 `;
 
 const Left = styled.div`
@@ -117,12 +119,14 @@ const Center = styled.div`
   flex-direction: column;
   gap: 15px;
   padding: 20px;
+  ${mobile({ display: "none" })};
 `;
 
 const Contact = styled.div`
   font-weight: bold;
   font-size: 18px;
   margin-bottom: 15px;
+  ${mobile({ marginBottom: "0px" })};
 `;
 
 const Title = styled.div`

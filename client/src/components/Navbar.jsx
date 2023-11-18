@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Badge from '@mui/material/Badge';
 import { IconButton } from '@mui/material';
+import { mobile } from "../responsive.js";
 
 const Navbar = () => {
   return (
@@ -23,11 +24,11 @@ const Navbar = () => {
             <Item>REGISTER</Item>
             <Item>SIGN IN</Item>
             <Item>
-              <IconButton aria-label="cart">
+              <CustomIconButton aria-label="cart">
                 <Badge badgeContent={4} color="secondary">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
-              </IconButton>
+              </CustomIconButton>
             </Item>
           </Right>
         </Wrapper>
@@ -39,23 +40,27 @@ export default Navbar
 
 const Container = styled.div`
     height: 60px;
+    ${mobile({ height: "60px" })};
 `;
 
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
+  ${mobile({ padding: "10px 0", alignItems: "center" })};
 `;
 
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  ${mobile({ flex: 0 })};
 `;
 
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
+  ${mobile({ display: "none" })};
 `;
 
 const Search = styled.div`
@@ -64,21 +69,25 @@ const Search = styled.div`
   justify-content: space-between;
   margin-left: 25px;
   align-items: center;
+  ${mobile({ marginLeft: "10px", marginRight: "12px" })};
 `;
 
 const Input = styled.input`
   border: none;
   outline: none;
   padding: 5px;
+  ${mobile({ width: "50px" })};
 `;
 
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  ${mobile({ flex: 0, marginRight: "10px" })};
 `;
 
 const Logo = styled.h1`
   font-weight: bold;
+  ${mobile({ fontSize: "24px" })};
 `;
 
 const Right = styled.div`
@@ -87,10 +96,15 @@ const Right = styled.div`
   gap: 25px;
   align-items: center;
   justify-content: flex-end;
+  ${mobile({ gap: "8px", justifyContent: "center", fontSize: "14px", paddingRight: "8px" })};
 `;
 
 const Item = styled.div`
 
+`;
+
+const CustomIconButton = styled(IconButton)`
+  ${mobile({ padding: "0px !important" })};
 `;
 
 

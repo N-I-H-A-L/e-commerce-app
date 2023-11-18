@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SendIcon from '@mui/icons-material/Send';
+import { mobile } from '../responsive';
 
 const Newsletter = () => {
   return (
@@ -28,6 +29,7 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: #fcf5f5;
+  ${mobile({ height: "45vh" })};
 `;
 
 const Title = styled.h1`
@@ -38,6 +40,7 @@ const Title = styled.h1`
 const Desc = styled.div`
   font-size: 20px;
   margin-bottom: 20px;
+  ${mobile({ textAlign: "center" })};
 `;
 
 const InputCont = styled.div`
@@ -66,4 +69,8 @@ const Button = styled.button`
   color: white;
   border-bottom: 1px solid lightgray;
   height: 105%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${mobile({ width: "25%", padding: "5px" })};
 `;
