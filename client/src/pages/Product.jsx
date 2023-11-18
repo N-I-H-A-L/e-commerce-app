@@ -6,6 +6,7 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { mobile } from '../responsive';
 
 const Product = () => {
   return (
@@ -69,21 +70,23 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   padding: 30px;
-  `;
+  ${mobile({ flexDirection: "column", padding: "10px", paddingTop: "0" })};
+`;
 
 const ImgContainer = styled.div`
   flex: 1;
-  `;
+`;
 
 const Image = styled.img`
   width: 100%;
   height: 80vh;
   object-fit: cover;
-  `;
+`;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  ${mobile({ padding: "20px" })};
 `;
 
 const Title = styled.h1`
@@ -156,6 +159,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${mobile({ width: "90%" })};
 `;
 
 const Button = styled.button`
@@ -169,4 +173,5 @@ const Button = styled.button`
   &:hover{
     background-color: #f8f4f4;
   }
+  ${mobile({ width: "40vw" })};
 `;

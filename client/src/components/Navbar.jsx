@@ -54,13 +54,12 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  ${mobile({ flex: 0 })};
+  ${mobile({ display: "none" })};
 `;
 
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: "none" })};
 `;
 
 const Search = styled.div`
@@ -69,20 +68,18 @@ const Search = styled.div`
   justify-content: space-between;
   margin-left: 25px;
   align-items: center;
-  ${mobile({ marginLeft: "10px", marginRight: "12px" })};
 `;
 
 const Input = styled.input`
   border: none;
   outline: none;
   padding: 5px;
-  ${mobile({ width: "50px" })};
 `;
 
 const Center = styled.div`
   flex: 1;
   text-align: center;
-  ${mobile({ flex: 0, marginRight: "10px" })};
+  ${mobile({ flex: 0, marginRight: "10px", paddingLeft: "3px" })};
 `;
 
 const Logo = styled.h1`

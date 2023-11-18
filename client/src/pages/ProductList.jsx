@@ -5,6 +5,7 @@ import Announcement from '../components/Announcement';
 import Products from '../components/Products';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
+import { mobile } from '../responsive';
 
 const ProductList = () => {
   return (
@@ -58,12 +59,14 @@ const Container = styled.div`
 const Title = styled.h1`
   margin-left: 20px;
   margin-top: 10px;
+  ${mobile({ marginLeft: "10px" })};
 `;
 
 const FilterCont = styled.div`
   display: flex;
   padding: 15px;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column", alignItems: "flex-start", gap: "10px" })};
 `;
 
 const Filter = styled.div`

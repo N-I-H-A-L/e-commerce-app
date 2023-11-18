@@ -165,4 +165,5 @@ const Payment = styled.img`
   height: 30px;
   width: 300px;
   object-fit: cover;
+  ${mobile({ display: "none" })};
 `;

@@ -5,6 +5,7 @@ import Announcement from "../components/Announcement.jsx";
 import Footer from "../components/Footer.jsx";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { mobile } from '../responsive.js';
 
 const Cart = () => {
   return (
@@ -100,6 +101,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({ padding: "10px" })};
 `;
 
 const Title = styled.h1`
@@ -124,7 +126,7 @@ const TopButton = styled.button`
 `;
 
 const TopTexts = styled.div`
-
+  ${mobile({ display: "none" })};
 `;
 
 const TopText = styled.div`
@@ -135,6 +137,7 @@ const TopText = styled.div`
 
 const Bottom = styled.div`
   display: flex;
+  ${mobile({ flexDirection: "column" })};
 `;
 
 const Info = styled.div`
@@ -159,6 +162,7 @@ const Product = styled.div`
   width: 100%;
   justify-content: space-between;
   margin: 10px;
+  ${mobile({ flexDirection: "column" })};
 `;
 
 const ProductDetails = styled.div`
