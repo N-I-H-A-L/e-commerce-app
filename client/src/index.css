@@ -4,6 +4,6 @@
   box-sizing: border-box;
 }
 
-body, input{
+body, input, option, select{
   font-family: 'Urbanist', sans-serif;
 }
