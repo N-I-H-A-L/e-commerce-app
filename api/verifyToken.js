@@ -43,3 +43,19 @@ export const verifyAndAuth = (req, res, next)=>{
         }
     });
 }
+
+//Some functionalities will be specific for users with Admin priviledges.
+export const verifyAdmin = (req, res, next)=>{
+    verifyToken(req, res, ()=>{
+        if(req.user.isAdmin){
+            next();
+            //next() will generally be the route handler for the route which called this function.
+        }
+        else{
+            res.status(403).json({
+                success: false,
+                message: "You don't have the required permissions."
+            });
+        }
+    });
+}
