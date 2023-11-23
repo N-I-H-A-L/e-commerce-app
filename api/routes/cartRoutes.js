@@ -19,7 +19,7 @@ router.post("/", verifyToken, async (req, res)=>{
 //Update cart -> only admins or the user itself can upate the cart so, verifyAndAuth.
 router.put("/:id", verifyAndAuth, async (req, res)=>{
     try{
-        const updatedCart = await Product.findByIdAndUpdate(req.params.id, {
+        const updatedCart = await Cart.findByIdAndUpdate(req.params.id, {
             $set: req.body,
         }, {new: true});
         res.status(200).json(updatedCart);
@@ -54,7 +54,7 @@ router.get("/find/:userId", verifyAndAuth, async (req, res)=>{
     }
 });
 
-//Get all products (only admins can access)
+//Get all carts (only admins can access)
 router.get("/", verifyAdmin, async (req, res)=>{
     try{
         const carts = await Cart.find();
