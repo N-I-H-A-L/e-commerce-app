@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import { Link } from 'react-router-dom';
 
 const CategoryItem = ({ category }) => {
   return (
     <Container>
-      <Image src={category.img} />
-      <Info>
-        <Title>{category.title}</Title>
-        <Button>SHOP NOW</Button>
-      </Info>
+      {/* On clicking the item it will forward to this link (check App component) */}
+      <Link to={`/products/${category.category}`}>
+        <Image src={category.img} />
+        <Info>
+          <Title>{category.title}</Title>
+          <Button>SHOP NOW</Button>
+        </Info>
+      </Link>
     </Container>
   )
 }
