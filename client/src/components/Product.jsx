@@ -3,17 +3,20 @@ import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
   return (
     <Container>
-      <Image src={product.img} />
+      <Image src={product.image} />
       <Info>
         <Icon>
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
-          <Search />
+          <Link to={`/product/${product._id}`}>
+            <Search />
+          </Link>
         </Icon>
         <Icon>
           <FavoriteBorderIcon />
