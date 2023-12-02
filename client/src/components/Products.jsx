@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import Product from "./Product.jsx";
 import { mobile } from '../responsive.js';
-import axiosClient from "../axios.js";
+import { publicRequest } from "../axios.js";
 
 const Products = ({ category, filters, sort }) => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ const Products = ({ category, filters, sort }) => {
   useEffect(()=>{
     const getData = async () =>{
       try{
-        const res = await axiosClient.get(category? `/product?category=${category}` : "/product");
+        const res = await publicRequest.get(category? `/product?category=${category}` : "/product");
         setProducts(res.data);
       }
       catch(err){
