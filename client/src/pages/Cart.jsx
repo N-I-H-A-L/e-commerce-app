@@ -6,8 +6,11 @@ import Footer from "../components/Footer.jsx";
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { mobile } from '../responsive.js';
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const cart = useSelector(state=> state.cart);
+  const products = cart.products;
   return (
     <Container>
       <Announcement />
@@ -24,65 +27,46 @@ const Cart = () => {
           </Top>
           <Bottom>
             <Info>
-              <Product>
-                <ProductDetails>
-                  <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png"/>
-                  <ProductInfo>
-                    <ProductName><b>Product: </b>JESSIE THUNDER SHIRT</ProductName>
-                    <ProductId><b>ID: </b>4564574</ProductId>
-                    <ProductColor color="lightgray"/>
-                    <ProductSize><b>Size: </b>37.5</ProductSize>
-                  </ProductInfo>
-                </ProductDetails>
-                <PriceDetails>
-                  <QuantityCont>
-                    <RemoveOutlinedIcon />
-                    <Quantity>1</Quantity>
-                    <AddOutlinedIcon />
-                  </QuantityCont>
-                  <Price>$ 30</Price>
-                </PriceDetails>
-              </Product>
-
+              {products.map((product)=>(
+                  <Product>
+                  <ProductDetails>
+                    <Image src={product.image}/>
+                    <ProductInfo>
+                      <ProductName><b>Product: </b>{product.title}</ProductName>
+                      <ProductId><b>ID: </b>{product._id}</ProductId>
+                      <ProductColor color={product.color}/>
+                      <ProductSize><b>Size: </b>{product.size}</ProductSize>
+                    </ProductInfo>
+                  </ProductDetails>
+                  <PriceDetails>
+                    <QuantityCont>
+                      <RemoveOutlinedIcon />
+                      <Quantity>{product.quantity}</Quantity>
+                      <AddOutlinedIcon />
+                    </QuantityCont>
+                    <Price>$ {product.price*product.quantity}</Price>
+                  </PriceDetails>
+                </Product>
+              ))}
               <Hr />
-
-              <Product>
-                <ProductDetails>
-                  <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png"/>
-                  <ProductInfo>
-                    <ProductName><b>Product: </b>JESSIE THUNDER SHIRT</ProductName>
-                    <ProductId><b>ID: </b>4564574</ProductId>
-                    <ProductColor color="lightgray"/>
-                    <ProductSize><b>Size: </b>37.5</ProductSize>
-                  </ProductInfo>
-                </ProductDetails>
-                <PriceDetails>
-                  <QuantityCont>
-                    <RemoveOutlinedIcon />
-                    <Quantity>2</Quantity>
-                    <AddOutlinedIcon />
-                  </QuantityCont>
-                  <Price>$ 30</Price>
-                </PriceDetails>
-              </Product>
             </Info>
             <Summary>
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
               <Item>
                 <ItemText>Subtotal</ItemText>
-                <ItemText>$ 80</ItemText>
+                <ItemText>$ {cart.totalPrice}</ItemText>
               </Item>
               <Item>
                 <ItemText>Estimated Shipping</ItemText>
-                <ItemText>$ 5.80</ItemText>
+                <ItemText>$ 7.80</ItemText>
               </Item>
               <Item>
                 <ItemText>Shipping Discount</ItemText>
-                <ItemText>$ -5.80</ItemText>
+                <ItemText>$ -7.80</ItemText>
               </Item>
               <Item>
                 <ItemText type="total">Total</ItemText>
-                <ItemText>$ 80</ItemText>
+                <ItemText>$ {cart.totalPrice}</ItemText>
               </Item>
               <Button>CHECKOUT NOW</Button>
             </Summary>
