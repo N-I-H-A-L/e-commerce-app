@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Announcement from "../components/Announcement.jsx";
@@ -7,10 +7,44 @@ import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { mobile } from '../responsive.js';
 import { useSelector } from "react-redux";
+import { userRequest, publicRequest } from "../axios.js";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector(state=> state.cart);
   const products = cart.products;
+  const navigate = useNavigate();
+
+  const handlePayment = async () =>{
+    if(cart.totalPrice===0){
+      alert("Please add some products first.");
+      return;
+    }
+    const res = await publicRequest.get("/getkey");
+    const rzp_key = res.data.key;
+
+    //'data' key of object returned by axios.post will contain the data sent by the server as response.
+    const { data: { order } } = await userRequest.post("/checkout/payment", {
+      //Destructured the 'data' object further to get the 'order' object of 'data'. 
+      amount: cart.totalPrice
+    });
+     //Code given in Razorpay Docs
+     const options = {
+      key: rzp_key, 
+      amount: order.amount, //amount received from the data of post request
+      currency: "USD",
+      name: "Nihal",
+      order_id: order.id, //id received from the data of post request
+      callback_url: "http://localhost:5000/api/checkout/verification", //We want the callback_url to be called to the API we created in the backend. 
+      // And then razorpay will send data about the payment in the body of the POST request made to callback_url.
+      redirect: false,
+    };
+
+    //In index.html, we've added a script for razorpay that's why we're able to use window.Razorpay.
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  }
+
   return (
     <Container>
       <Announcement />
@@ -68,7 +102,7 @@ const Cart = () => {
                 <ItemText type="total">Total</ItemText>
                 <ItemText>$ {cart.totalPrice}</ItemText>
               </Item>
-              <Button>CHECKOUT NOW</Button>
+              <Button onClick={handlePayment}>CHECKOUT NOW</Button>
             </Summary>
           </Bottom>
         </Wrapper>
