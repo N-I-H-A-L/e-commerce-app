@@ -9,7 +9,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { mobile } from '../responsive';
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../axios.js";
-import { addProduct } from "../redux/cartRedux.js";
+import { addProduct } from "../redux/cartSlice.js";
 import { useDispatch } from "react-redux";
 
 const Product = () => {
