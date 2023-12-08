@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Announcement from "../components/Announcement.jsx";
@@ -8,12 +7,10 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { mobile } from '../responsive.js';
 import { useSelector } from "react-redux";
 import { userRequest, publicRequest } from "../axios.js";
-import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector(state=> state.cart);
   const products = cart.products;
-  const navigate = useNavigate();
 
   const handlePayment = async () =>{
     if(cart.totalPrice===0){
@@ -33,7 +30,6 @@ const Cart = () => {
       key: rzp_key, 
       amount: order.amount, //amount received from the data of post request
       currency: "USD",
-      name: "Nihal",
       order_id: order.id, //id received from the data of post request
       callback_url: "http://localhost:5000/api/checkout/verification", //We want the callback_url to be called to the API we created in the backend. 
       // And then razorpay will send data about the payment in the body of the POST request made to callback_url.
