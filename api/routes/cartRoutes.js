@@ -1,6 +1,6 @@
 import express from "express";
 import Cart from "../models/Cart.js";
-import { verifyAdmin, verifyAndAuth, verifyToken } from "../verifyToken.js";
+import { verifyAndAuth, verifyToken } from "../verifyToken.js";
 
 const router = express.Router();
 
@@ -48,17 +48,6 @@ router.get("/find/:userId", verifyAndAuth, async (req, res)=>{
     try{
         const cart = await Cart.findOne({userId: req.params.userId});
         res.status(200).json(cart);
-    }
-    catch(err){
-        res.status(500).json(err);
-    }
-});
-
-//Get all carts (only admins can access)
-router.get("/", verifyAdmin, async (req, res)=>{
-    try{
-        const carts = await Cart.find();
-        res.status(200).json(carts);
     }
     catch(err){
         res.status(500).json(err);

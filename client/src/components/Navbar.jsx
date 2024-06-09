@@ -7,9 +7,11 @@ import { IconButton } from '@mui/material';
 import { mobile } from "../responsive.js";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const quantity = useSelector((state)=> state.cart.quantity);
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -25,8 +27,8 @@ const Navbar = () => {
             <Logo>CARTIFY~</Logo>
           </Center>
           <Right>
-            <Item>REGISTER</Item>
-            <Item>SIGN IN</Item>
+            <Item onClick={()=>navigate('/register')}>REGISTER</Item>
+            <Item onClick={()=>navigate('/login')}>SIGN IN</Item>
             <Item>
               <Link to="/cart">
                 <CustomIconButton aria-label="cart">
@@ -103,7 +105,9 @@ const Right = styled.div`
 `;
 
 const Item = styled.div`
-
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const CustomIconButton = styled(IconButton)`

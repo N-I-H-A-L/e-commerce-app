@@ -7,10 +7,12 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { mobile } from '../responsive.js';
 import { useSelector } from "react-redux";
 import { userRequest, publicRequest } from "../axios.js";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector(state=> state.cart);
   const products = cart.products;
+  const navigate = useNavigate();
 
   const handlePayment = async () =>{
     if(cart.totalPrice===0){
@@ -48,11 +50,7 @@ const Cart = () => {
         <Wrapper>
           <Title>YOUR BAG</Title>
           <Top>
-            <TopButton>CONTINUE SHOPPING</TopButton>
-            <TopTexts>
-              <TopText>Shopping Bag (2)</TopText>
-              <TopText>Your Wishlist (0)</TopText>
-            </TopTexts>
+            <TopButton onClick={()=>navigate('/')}>CONTINUE SHOPPING</TopButton>
             <TopButton type="filled">CHECKOUT NOW</TopButton>
           </Top>
           <Bottom>
@@ -137,16 +135,6 @@ const TopButton = styled.button`
   border: ${props=> props.type === "filled" && "none"};
   background-color: ${props=> props.type === "filled" ? "black" : "transparent"};
   color: ${props=> props.type === "filled" && "white"};
-`;
-
-const TopTexts = styled.div`
-  ${mobile({ display: "none" })};
-`;
-
-const TopText = styled.div`
-  text-decoration: underline;
-  cursor: pointer;
-  margin: 0 10px;
 `;
 
 const Bottom = styled.div`
