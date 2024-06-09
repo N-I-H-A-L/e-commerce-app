@@ -11,15 +11,9 @@ const Product = ({ product }) => {
       <Image src={product.image} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
-        <Icon>
           <Link to={`/product/${product._id}`}>
             <Search style={{fill: "black"}}/>
           </Link>
-        </Icon>
-        <Icon>
-          <FavoriteBorderIcon />
         </Icon>
       </Info>
     </Container>

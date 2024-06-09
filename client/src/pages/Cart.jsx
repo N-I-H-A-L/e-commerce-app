@@ -64,14 +64,10 @@ const Cart = () => {
                       <ProductId><b>ID: </b>{product._id}</ProductId>
                       <ProductColor color={product.color}/>
                       <ProductSize><b>Size: </b>{product.size}</ProductSize>
+                      <ProductQuant><b>Quantity: </b>{product.quantity}</ProductQuant>
                     </ProductInfo>
                   </ProductDetails>
                   <PriceDetails>
-                    <QuantityCont>
-                      <RemoveOutlinedIcon />
-                      <Quantity>{product.quantity}</Quantity>
-                      <AddOutlinedIcon />
-                    </QuantityCont>
                     <Price>$ {product.price*product.quantity}</Price>
                   </PriceDetails>
                 </Product>
@@ -202,30 +198,16 @@ const ProductSize = styled.span`
 
 `;
 
+const ProductQuant = styled.span`
+
+`;
+
 const PriceDetails = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
-
-const QuantityCont = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const Quantity = styled.div`
-  font-size: 24px;
-  margin: 15px;
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid teal;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Price = styled.div`

@@ -10,7 +10,7 @@ import { mobile } from '../responsive';
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../axios.js";
 import { addProduct } from "../redux/cartSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Product = () => {
   const id = useLocation().pathname.split('/')[2];
@@ -18,6 +18,8 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+
+  const { currentUser } = useSelector(state=> state.user);
 
   const dispatch = useDispatch();
 
@@ -35,6 +37,7 @@ const Product = () => {
   }, [id]);
 
   const addToCart = () =>{
+    console.log(currentUser);
     dispatch(addProduct({
       ...product,
       quantity,
