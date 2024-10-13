@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { mobile } from '../responsive';
 import { login } from '../redux/apiCalls';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isFetching, error } = useSelector((state)=> state.user);
   const handleLogin = async (e) =>{
     e.preventDefault();
@@ -26,8 +28,7 @@ const Login = () => {
           {/* Disable the button if the user credentials are getting fetched. */}
           <Button onClick={(e)=>handleLogin(e)} disabled={isFetching}>LOGIN</Button>
           {error && <Error>Something went wrong...</Error>}
-          <Link>Forgot password?</Link>
-          <Link>Create a new account</Link>
+          <Link onClick={()=> navigate('/register')}>Create a new account</Link>
         </Form>
       </Wrapper>
     </Container>
